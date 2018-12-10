@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC  "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"  "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+
+	<!-- Template Definition -->
+	<definition name="template-def"
+		template="/WEB-INF/tiles/layouts/defaultLayout.jsp">
+		<put-attribute name="title" value="" />
+		<put-attribute name="header"
+			value="/WEB-INF/tiles/templates/defaultHeader.jsp" />
+		<put-attribute name="menu"
+			value="/WEB-INF/tiles/templates/defaultMenu.jsp" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer"
+			value="/WEB-INF/tiles/templates/defaultFooter.jsp" />
+	</definition>
+
+	<!-- Main Page -->
+	<definition name="home" extends="template-def">
+		<put-attribute name="title" value="Welcome" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/pages/home.jsp" />
+	</definition>
+	
+	<!-- Login Page -->
+	<definition name="loginPage" extends="template-def">
+		<put-attribute name="title" value="Login" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/auth/login.jsp" />
+	</definition>
+	
+	<!-- Welcome Page -->
+	<definition name="welcomePage" extends="template-def">
+		<put-attribute name="title" value="Welcome" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/admin/welcome.jsp" />
+	</definition>
+	
+	<!-- Categories Page -->
+	<definition name="categoriesPage" extends="template-def">
+		<put-attribute name="title" value="Categories" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/admin/categories/index.jsp" />
+	</definition>
+	
+	<!-- Category Create Page -->
+	<definition name="categoriesCreatePage" extends="template-def">
+		<put-attribute name="title" value="Category Create" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/admin/categories/create.jsp" />
+	</definition>
+	
+	<!-- Category Edit Page -->
+	<definition name="categoriesEditPage" extends="template-def">
+		<put-attribute name="title" value="Category Edit" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/admin/categories/edit.jsp" />
+	</definition>
+		
+</tiles-definitions>
