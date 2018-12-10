@@ -1,5 +1,7 @@
 package com.hungit.repository;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
@@ -18,5 +20,10 @@ public interface CategoryRepository
 	Page<Category> findAll(Pageable pageable, @Param("search") String search);
 
 	Page<Category> findAll(Pageable pageable);
+	
+	
+	@Query("SELECT c FROM Category c WHERE c.parentId = NULL")
+	List<Category> findByParentIdWhereNull();
+	
 
 }

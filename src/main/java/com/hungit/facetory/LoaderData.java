@@ -3,7 +3,7 @@
  */
 package com.hungit.facetory;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -13,8 +13,10 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import com.hungit.entity.Category;
 import com.hungit.entity.Role;
 import com.hungit.entity.User;
+import com.hungit.repository.CategoryRepository;
 import com.hungit.repository.RoleRepository;
 import com.hungit.repository.UserRepository;
 import com.hungit.util.ArrayUtil;
@@ -25,21 +27,24 @@ import com.hungit.util.ArrayUtil;
  */
 @Component
 public class LoaderData implements ApplicationRunner {
-	
+
 	private static final String PREFIX_ROLE = "ROLE_";
-	
+
 	private RoleRepository roleRepository;
 
 	private UserRepository userRepository;
 
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
 
+	private CategoryRepository categoryRepository;
+
 	@Autowired
 	public LoaderData(RoleRepository roleRepository, UserRepository userRepository,
-			BCryptPasswordEncoder bCryptPasswordEncoder) {
+			BCryptPasswordEncoder bCryptPasswordEncoder, CategoryRepository categoryRepository) {
 		this.roleRepository = roleRepository;
 		this.userRepository = userRepository;
 		this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+		this.categoryRepository = categoryRepository;
 	}
 
 	/*
@@ -49,6 +54,7 @@ public class LoaderData implements ApplicationRunner {
 	 * ApplicationArguments)
 	 */
 	public void run(ApplicationArguments args) throws Exception {
+
 		Set<Role> roles = ArrayUtil.asArrayList(roleRepository.save(new Role(ROLES.ADMIN.getName())));
 		User userOne = new User();
 		userOne.setEmail("hungnhungit123@gmail.com");
@@ -65,6 +71,49 @@ public class LoaderData implements ApplicationRunner {
 		userTwo.setPassword(bCryptPasswordEncoder.encode("nhungit"));
 		userRepository.save(userOne);
 		userRepository.save(userTwo);
+
+		// =======Save Categories =======
+
+		Category categoryOne = new Category();
+		categoryOne.setName("Php");
+		categoryOne.setDescription("Php");
+		categoryOne.setPosition(1);
+		categoryOne = categoryRepository.save(categoryOne);
+
+		Category categoryTow = new Category();
+		categoryTow.setName("C++");
+		categoryTow.setDescription("C++");
+		categoryTow.setPosition(2);
+		categoryRepository.save(categoryTow);
+
+		Set<Category> subcategories = new HashSet<>();
+
+		subcategories.add(categoryOne);
+
+		Category categoryThree = new Category();
+		categoryThree.setName("Ruby");
+		categoryThree.setDescription("Ruby");
+		categoryThree.setParentId(categoryOne);
+		categoryThree.setPosition(3);
+		categoryRepository.save(categoryThree);
+
+		Category categoryFour = new Category();
+		categoryFour.setName("Java");
+		categoryFour.setDescription("Java");
+		categoryFour.setPosition(4);
+		categoryFour = categoryRepository.save(categoryFour);
+
+		
+		
+		
+		
+		List<Category> lists = categoryRepository.findByParentIdWhereNull();
+
+		lists.forEach(object -> {
+
+			System.out.println(object.getName());
+
+		});
 
 	}
 

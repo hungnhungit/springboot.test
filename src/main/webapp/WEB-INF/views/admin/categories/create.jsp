@@ -25,7 +25,7 @@
 	<div class="form-group">
 		<label>Parent</label>
 		<form:select path="parentId">
-			<form:option value="NONE" label="---SELECT---" />
+			<form:option value="" label="---SELECT---" />
 			<c:forEach items="${parents}" var="parent">
 				<form:option value="${parent.id}" label="${parent.name}" />
 			</c:forEach>

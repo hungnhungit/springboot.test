@@ -25,11 +25,11 @@ public class Category extends AbstractBaseModel {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name = "parent_id")
 	private Category parentId;
 
-	@OneToMany(mappedBy = "parentId")
+	@OneToMany(mappedBy = "parentId", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private Set<Category> subCategories = new HashSet<Category>();
 
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "categories")

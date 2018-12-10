@@ -1,6 +1,7 @@
 package com.hungit.service;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -130,6 +131,17 @@ public class CategoriesServiceImpl extends AbstractBaseService implements Catego
 			return categoryRepository.findAll(pageable);
 		}
 		return categoryRepository.findAll(pageable, "%" + search + "%");
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.hungit.service.CategoriesService#getSubCategories(long)
+	 */
+	@Override
+	public Set<Category> getSubCategories(long id) {
+		Category categoty = findOne(id);
+		return categoty.getSubCategories();
 	}
 
 	/*

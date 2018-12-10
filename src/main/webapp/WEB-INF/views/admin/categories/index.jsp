@@ -11,6 +11,7 @@
 <br />
 <br />
 <div>
+	${message.message}
 	<table border="1">
 		<tr>
 			<th>ID</th>

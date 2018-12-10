@@ -3,27 +3,22 @@
  */
 package com.hungit.notification.email;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
-import java.util.Set;
 /**
  * @author Kashiwagi
  *
  */
 
+@Getter
+@Setter
+@AllArgsConstructor
+public class Email {
 
-public interface Email {
+	private String to;
+	private String subject;
+	private String text;
 
-	String getFromAddress();
-	
-	Set<String> getToAddresses();
-	
-	Set<String> getCcAddresses();
-	
-	Set<String> getBccAddresses();
-	
-	Set<String> getAttachments();
-	
-	String getSubject();
-	
-	String getBody();
 }
