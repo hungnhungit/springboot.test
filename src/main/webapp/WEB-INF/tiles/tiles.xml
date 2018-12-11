@@ -57,5 +57,19 @@
 		<put-attribute name="body"
 			value="/WEB-INF/views/admin/categories/edit.jsp" />
 	</definition>
+	
+	<!-- Posts Page -->
+	<definition name="post.index" extends="template-def">
+		<put-attribute name="title" value="Posts" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/admin/posts/index.jsp" />
+	</definition>
+	
+	<!-- Posts Page -->
+	<definition name="post.create" extends="template-def">
+		<put-attribute name="title" value="Posts Create" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/admin/posts/create.jsp" />
+	</definition>
 		
 </tiles-definitions>

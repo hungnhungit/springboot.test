@@ -14,9 +14,11 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import com.hungit.entity.Category;
+import com.hungit.entity.Post;
 import com.hungit.entity.Role;
 import com.hungit.entity.User;
 import com.hungit.repository.CategoryRepository;
+import com.hungit.repository.PostRepository;
 import com.hungit.repository.RoleRepository;
 import com.hungit.repository.UserRepository;
 import com.hungit.util.ArrayUtil;
@@ -38,13 +40,17 @@ public class LoaderData implements ApplicationRunner {
 
 	private CategoryRepository categoryRepository;
 
+	private PostRepository postRepository;
+
 	@Autowired
 	public LoaderData(RoleRepository roleRepository, UserRepository userRepository,
-			BCryptPasswordEncoder bCryptPasswordEncoder, CategoryRepository categoryRepository) {
+			BCryptPasswordEncoder bCryptPasswordEncoder, CategoryRepository categoryRepository,
+			PostRepository postRepository) {
 		this.roleRepository = roleRepository;
 		this.userRepository = userRepository;
 		this.bCryptPasswordEncoder = bCryptPasswordEncoder;
 		this.categoryRepository = categoryRepository;
+		this.postRepository = postRepository;
 	}
 
 	/*
@@ -103,17 +109,14 @@ public class LoaderData implements ApplicationRunner {
 		categoryFour.setPosition(4);
 		categoryFour = categoryRepository.save(categoryFour);
 
-		
-		
-		
-		
-		List<Category> lists = categoryRepository.findByParentIdWhereNull();
-
-		lists.forEach(object -> {
-
-			System.out.println(object.getName());
-
-		});
+		// ============= Save Post =======
+		Post postOne = new Post();
+		postOne.setTitle("Developer Php");
+		postOne.setImage("php.png");
+		postOne.setSlug("developer-php");
+		postOne.setCategoryId(categoryOne);
+		postOne.setBody("Developer Php");
+		postRepository.save(postOne);
 
 	}
 

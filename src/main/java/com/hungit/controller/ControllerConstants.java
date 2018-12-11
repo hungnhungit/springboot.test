@@ -16,6 +16,13 @@ public interface ControllerConstants {
 			final String categoriesEdit = "categoriesEditPage";
 			final String redirectCategories = "redirect:/categories";
 		}
+		
+		interface Post{
+			final String postList = "categoriesPage";
+			final String postCreate = "categoriesCreatePage";
+			final String postEdit = "categoriesEditPage";
+			final String redirectPost = "redirect:/posts";
+		}
 	}
 	
 }

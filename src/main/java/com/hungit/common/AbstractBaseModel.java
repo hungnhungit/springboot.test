@@ -10,15 +10,19 @@ import javax.persistence.PreUpdate;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @MappedSuperclass
 public abstract class AbstractBaseModel implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+	
 	@Temporal(TemporalType.DATE)
 	@Column(name = "created_at")
 	private Date created_at;
 
+	
 	@Temporal(TemporalType.DATE)
 	@Column(name = "updated_at")
 	private Date update_at;

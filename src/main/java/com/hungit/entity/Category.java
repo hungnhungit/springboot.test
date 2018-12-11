@@ -4,6 +4,8 @@ import java.util.*;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonView;
 import com.hungit.common.AbstractBaseModel;
 
 import lombok.AllArgsConstructor;
@@ -29,9 +31,15 @@ public class Category extends AbstractBaseModel {
 	@JoinColumn(name = "parent_id")
 	private Category parentId;
 
-	@OneToMany(mappedBy = "parentId", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JsonIgnore
+	@OneToMany(mappedBy = "parentId", cascade = CascadeType.ALL)
 	private Set<Category> subCategories = new HashSet<Category>();
 
+	@JsonIgnore
+	@OneToMany(mappedBy = "categoryId", cascade = CascadeType.ALL)
+	private Set<Post> posts = new HashSet<Post>();
+
+	@JsonIgnore
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "categories")
 	private Set<Product> products = new HashSet<Product>();
 

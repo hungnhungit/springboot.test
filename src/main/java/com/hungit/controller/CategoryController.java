@@ -60,19 +60,6 @@ public class CategoryController extends BaseController {
 		return mv;
 	}
 
-//	@RequestMapping(value = "subcategories", method = RequestMethod.GET)
-//	public @ResponseBody String subCategories() {
-//		Set<Category> subCategories = categoriesService.getSubCategories(1);
-//
-//		subCategories.forEach(object -> {
-//
-//			System.out.println(object.getName());
-//
-//		});
-//
-//		return "test";
-//	}
-
 	/**
 	 * create
 	 * 
