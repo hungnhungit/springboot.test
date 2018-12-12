@@ -27,7 +27,7 @@ public class Category extends AbstractBaseModel {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@ManyToOne
+	@ManyToOne()
 	@JoinColumn(name = "parent_id")
 	private Category parentId;
 

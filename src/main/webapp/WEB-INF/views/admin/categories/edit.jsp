@@ -6,7 +6,7 @@
 <h2>Article</h2>
 <form:form modelAttribute="categoryForm" method="post"
 	action="${saveURL }" cssClass="form">
-	<form:hidden path="id" />
+	<form:hidden path="id" id="id"/>
 	<div class="form-group">
 		<label>Name</label>
 		<form:input path="name" cssClass="form-control" id="name" />

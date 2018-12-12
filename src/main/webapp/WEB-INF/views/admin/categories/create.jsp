@@ -31,6 +31,7 @@
 			</c:forEach>
 		</form:select>
 	</div>
+
 	<div class="form-group">
 		<label>Status</label>
 		<form:select path="status">

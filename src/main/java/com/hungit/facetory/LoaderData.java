@@ -111,12 +111,20 @@ public class LoaderData implements ApplicationRunner {
 
 		// ============= Save Post =======
 		Post postOne = new Post();
-		postOne.setTitle("Developer Php");
+		postOne.setTitle("Developer Java");
 		postOne.setImage("php.png");
-		postOne.setSlug("developer-php");
+		postOne.setSlug("developer-java");
 		postOne.setCategoryId(categoryOne);
-		postOne.setBody("Developer Php");
+		postOne.setBody("Developer Java");
 		postRepository.save(postOne);
+
+		Post postTow = new Post();
+		postTow.setTitle("Developer Php");
+		postTow.setImage("php.png");
+		postTow.setSlug("developer-php");
+		postTow.setCategoryId(categoryTow);
+		postTow.setBody("Developer Php");
+		postRepository.save(postTow);
 
 	}
 

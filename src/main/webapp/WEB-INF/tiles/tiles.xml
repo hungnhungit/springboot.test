@@ -65,11 +65,18 @@
 			value="/WEB-INF/views/admin/posts/index.jsp" />
 	</definition>
 	
-	<!-- Posts Page -->
+	<!-- Posts Create Page -->
 	<definition name="post.create" extends="template-def">
 		<put-attribute name="title" value="Posts Create" />
 		<put-attribute name="body"
 			value="/WEB-INF/views/admin/posts/create.jsp" />
+	</definition>
+	
+	<!-- Posts Edit Page -->
+	<definition name="post.edit" extends="template-def">
+		<put-attribute name="title" value="Posts Edit" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/admin/posts/edit.jsp" />
 	</definition>
 		
 </tiles-definitions>

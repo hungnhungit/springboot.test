@@ -17,6 +17,7 @@
 			<th>ID</th>
 			<th>Title</th>
 			<th>Slug</th>
+			<th>Image</th>
 			<th>Category</th>
 			<th>Action</th>
 		</tr>
@@ -25,6 +26,7 @@
 				<td>${post.id}</td>
 				<td>${post.title}</td>
 				<td>${post.slug}</td>
+				<td><img src="/uploads/${post.image}"/ width="50" height="50"></td>
 				<td>${post.categoryId.name}</td>
 				<td><spring:url value="/posts/edit/${post.id}"
 						var="editURL" /> <a href="${editURL }" role="button">Edit</a> <spring:url

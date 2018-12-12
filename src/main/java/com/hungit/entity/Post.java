@@ -1,11 +1,14 @@
 package com.hungit.entity;
 
+import java.util.Date;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import com.hungit.common.AbstractBaseModel;
+import com.hungit.util.SlugUtil;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -51,5 +54,15 @@ public class Post extends AbstractBaseModel {
 
 	@Column(name = "view")
 	private int view = 0;
+
+	@PrePersist
+	public void prePersist() {
+		this.slug = SlugUtil.slugStr(this.title);
+	}
+
+	@PreUpdate
+	public void preUpdate() {
+		this.slug = SlugUtil.slugStr(this.title);
+	}
 
 }

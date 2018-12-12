@@ -142,17 +142,12 @@ public class CategoryController extends BaseController {
 	 */
 	@RequestMapping(value = { "/update" }, method = RequestMethod.POST)
 	public String update(Category category, RedirectAttributes ra) {
-		Category categoryUpdate = categoriesService.findOne(category.getId());
 
-		if (category.getParentId().getId() != null) {
-			Category parentCategory = categoriesService.findOne(category.getParentId().getId());
-			categoryUpdate.setParentId(parentCategory);
+		if (category.getParentId().getId() == null) {
+			category.setParentId(null);
 		}
-		categoryUpdate.setDescription(category.getDescription());
-		categoryUpdate.setName(category.getName());
-		categoryUpdate.setPosition(category.getPosition());
-		categoryUpdate.setStatus(category.getStatus());
-		categoriesService.update(categoryUpdate);
+		
+		categoriesService.update(category);
 
 		MessageHelper.addSuccessAttribute(ra, "Update success", "");
 

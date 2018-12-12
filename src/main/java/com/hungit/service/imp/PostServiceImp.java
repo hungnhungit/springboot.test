@@ -10,8 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hungit.entity.Post;
+import com.hungit.property.FileStorageProperties;
 import com.hungit.repository.PostRepository;
 import com.hungit.service.PostService;
+import com.hungit.util.FileUtil;
 
 /**
  * @author Kashiwagi
@@ -22,6 +24,9 @@ public class PostServiceImp implements PostService {
 
 	@Autowired
 	PostRepository postRepository;
+
+	@Autowired
+	FileStorageProperties fileStorageProperties;
 
 	/*
 	 * (non-Javadoc)
@@ -60,8 +65,7 @@ public class PostServiceImp implements PostService {
 	 */
 	@Override
 	public Post update(Post entity) {
-		// TODO Auto-generated method stub
-		return null;
+		return postRepository.save(entity);
 	}
 
 	/*
@@ -82,7 +86,11 @@ public class PostServiceImp implements PostService {
 	 */
 	@Override
 	public void deleteById(long entityId) {
-		postRepository.deleteById(entityId);
+		Post post = findOne(entityId);
+		String fileDelete = fileStorageProperties.getUploadDir().toString() + "/" + post.getImage();
+		FileUtil.deleteFile(fileDelete);
+		postRepository.delete(post);
+		;
 	}
 
 	/*

@@ -18,9 +18,9 @@ public interface ControllerConstants {
 		}
 		
 		interface Post{
-			final String postList = "categoriesPage";
-			final String postCreate = "categoriesCreatePage";
-			final String postEdit = "categoriesEditPage";
+			final String postList = "post.index";
+			final String postCreate = "post.create";
+			final String postEdit = "post.edit";
 			final String redirectPost = "redirect:/posts";
 		}
 	}
